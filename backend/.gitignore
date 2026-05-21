@@ -1,0 +1,40 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+venv/
+env/
+.venv/
+env.bak/
+venv.bak/
+backend/venv/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyc
+# User uploaded data and generated vector databases
+uploaded_pdfs/
+vector_store/
+*.faiss
+*.pkl
+
+# IDEs and OS files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Testing and Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Logs
+*.log
