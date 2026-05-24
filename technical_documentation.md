@@ -233,7 +233,7 @@ Zustand is used as the single source of truth on the frontend.
 
 ---
 
-## 6. RAG ARCHITECTURE EXPLANATION
+## 6. RAG ARCHITECTURE 
 
 ### What is RAG?
 Retrieval-Augmented Generation (RAG) is a design pattern that bridges the gap between an LLM's static training data and your dynamic, proprietary data. Instead of training or fine-tuning an LLM (which is extremely expensive and time-consuming), RAG performs a search operation first, retrieves the relevant facts, and forces the LLM to read those facts before answering.
@@ -255,7 +255,7 @@ By providing the LLM with a highly specific system prompt ("Only use information
 
 ---
 
-## 7. VECTOR DATABASE EXPLANATION
+## 7. VECTOR DATABASE 
 
 ### What is FAISS?
 FAISS (Facebook AI Similarity Search) is a C++ library with Python bindings designed to search dense vectors efficiently.
@@ -274,7 +274,7 @@ To find the answer, the database measures the angle between the Query Vector and
 
 ---
 
-## 8. EMBEDDINGS EXPLANATION
+## 8. EMBEDDINGS 
 
 ### Sentence Transformers (all-MiniLM-L6-v2)
 This specific model from HuggingFace was chosen over OpenAI's `text-embedding-ada-002` for specific engineering reasons:
@@ -284,7 +284,7 @@ This specific model from HuggingFace was chosen over OpenAI's `text-embedding-ad
 
 ---
 
-## 9. FRONTEND DESIGN EXPLANATION
+## 9. FRONTEND DESIGN 
 
 ### UI Architecture
 The UI follows a strict, modern, distraction-free aesthetic. The Pantone Warm Beige theme (`#F5F1EA`, `#CBB89D`) was chosen specifically to reduce eye strain compared to harsh whites or stark dark modes. It evokes a "premium document reading" feel.
