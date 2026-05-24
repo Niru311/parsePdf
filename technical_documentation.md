@@ -356,23 +356,7 @@ Runs natively via `uvicorn` and `vite` dev servers.
 
 ---
 
-## 14. INTERVIEW QUESTIONS & ANSWERS
-
-**Q: Why did you use LangChain instead of calling the LLM APIs directly?**
-> A: "LangChain abstracts away the boilerplate of document loading, text splitting, and vector database formatting. If we wanted to swap our FAISS database for Pinecone, or swap OpenRouter for a local Llama model, LangChain allows us to do this by changing one or two lines of configuration, rather than rewriting the entire HTTP orchestration layer."
-
-**Q: How does your system handle documents that exceed the LLM's context limit?**
-> A: "This is the core purpose of the RAG architecture. We don't feed the whole document to the LLM. We break the document into 1000-character chunks during ingestion. At query time, we perform a vector similarity search to find only the top 4 chunks most relevant to the user's question, and feed *only* those into the LLM context window."
-
-**Q: What happens if the system cannot find the answer in the uploaded PDF?**
-> A: "To prevent hallucinations, the LLM is guided by a strict System Prompt that explicitly states: 'Only use information from the provided context... If the context does not contain enough information, say: I could not find enough information.' The retrieval step might return irrelevant chunks, but the LLM is instructed to reject them."
-
-**Q: How would you scale this application to support thousands of users?**
-> A: "First, I'd move the FAISS index to a managed vector database like Pinecone or pgvector to make the backend stateless. Second, I'd offload the PDF ingestion to a background queue using Celery and Redis so uploads don't block the API. Finally, I'd containerize the FastAPI backend and deploy it on a Kubernetes cluster with an auto-scaler, while serving the React frontend globally via a CDN."
-
----
-
-## 15. FUTURE IMPROVEMENTS
+## 14. FUTURE IMPROVEMENTS
 
 1.  **Multi-User Authentication:** Implement JWT-based auth. Ensure vectors are tagged with a `user_id` metadata field so users can only query their own documents.
 2.  **Hybrid Search:** Combine semantic vector search (FAISS) with traditional keyword search (BM25). Vector search is bad at finding specific acronyms or serial numbers; hybrid search solves this.
@@ -382,10 +366,6 @@ Runs natively via `uvicorn` and `vite` dev servers.
 
 ---
 
-## 16. FINAL ENGINEERING SUMMARY
-
-**Elevator Pitch:**
-"I engineered a full-stack Retrieval-Augmented Generation (RAG) system utilizing React, FastAPI, and FAISS. It allows users to upload unstructured PDF data, processes it locally using sentence-transformer embeddings to guarantee privacy and zero latency, and provides a conversational interface powered by large language models. The system successfully eliminates LLM hallucinations by grounding every answer in mathematically retrieved source text, accompanied by exact citations."
 
 **GitHub README / Portfolio Summary:**
 This project is an end-to-end AI knowledge base demonstrating production-ready RAG concepts. Built with a decoupled architecture (Vite/React frontend, FastAPI backend), it utilizes LangChain for pipeline orchestration. The ingestion engine parses PDFs, applies an overlapping chunking strategy, and generates local embeddings (`all-MiniLM-L6-v2`) stored in an in-memory FAISS vector database. The inference engine performs sub-millisecond semantic search, injecting retrieved context into dynamic prompts handled by OpenRouter LLMs. Designed with a strict focus on data privacy, high performance, and hallucination reduction.
